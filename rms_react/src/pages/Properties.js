@@ -15,7 +15,15 @@ class Properties extends Component {
         });
     }
     render() {
-        const 
+        const {propsList} = this.state;
+        const propertyList = propsList.map(property => {
+            return <tr key={property.id}>
+                <td>{property.propertyName}</td>
+                <td>{property.type}</td>
+                <td>{property.address}</td>
+                <td>{property.unitsCount}</td>
+            </tr>
+        });
         return (
             <div>
                 <h2 className="text-center">Properties List</h2>
@@ -31,18 +39,7 @@ class Properties extends Component {
                         </thead>
 
                         <tbody>
-                            {
-                                state.properties.map(
-                                    property=>
-                                    <tr key = {property.id}>
-                                        <td>{property.propertyName}</td>
-                                        <td>{property.type}</td>
-                                        <td>{property.address}</td>
-                                        <td>{property.unitsCount}</td>
-
-                                    </tr>
-                                    )
-                            }
+                            {propertyList}
 
                         </tbody>
 
