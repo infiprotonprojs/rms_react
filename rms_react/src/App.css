@@ -11,7 +11,8 @@
 .home, .invoices, .payments, .properties, .tenants {
   display: flex;
   height: 90vh;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: start;
   font-size: 2rem;
 }
+  
