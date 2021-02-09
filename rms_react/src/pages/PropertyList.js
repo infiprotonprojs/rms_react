@@ -12,7 +12,7 @@ const PropertyList = ({property}) => {
                     <td>{property.unitsCount}</td>
                     <td>
                         <ButtonGroup>
-                            <Button size="sm" color="primary" tag={Link} to={"/" + property.id}>Edit</Button>
+                            <Button size="sm" color="primary" tag={Link} to={"/edit-property/" + property.id}>Edit</Button>
                             <Button size="sm" color="danger" onClick={() => this.remove(property.id)}>Delete</Button>
                         </ButtonGroup>
                     </td>

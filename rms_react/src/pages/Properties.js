@@ -28,11 +28,11 @@ class PropertiesToRender extends Component {
             <PropertyList key={propertyInfo.id} property={propertyInfo}/>));
         return (
             <>
-                <div className="float-right">
-                    <Button color="success" tag={Link} to="/">Add Property</Button>
-                </div>
-                <h2 className="text-center">Properties List</h2>
 
+                <h2 className="text-center">Properties List</h2>
+                <div className="row">
+                    <Button color="success" tag={Link} to="/add-property">Add Property</Button>
+                </div>
                 <div className="container-fluid m-2">
                     <div className="row border">
                         <table className="table table-striped">
