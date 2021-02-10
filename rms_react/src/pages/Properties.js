@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import PropertyList from "./PropertyList";
 import axios from 'axios';
 import {Button, ButtonGroup, Container, Table} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import ServiceProperty from '../services/ServiceProperty';
 
 
 class PropertiesToRender extends Component {
@@ -11,6 +11,14 @@ class PropertiesToRender extends Component {
         this.state = {
             propertyList: []
         }
+        this.deleteProperty = this.deleteProperty.bind(this);
+    }
+
+    deleteProperty(id) {
+        ServiceProperty.deleteProperty(id).then((res) => {
+            let property = [...this.state.propertyList].filter(i => i.id !== id);
+            this.setState({propertyList: property});
+        });
     }
 
     componentDidMount() {
@@ -24,8 +32,26 @@ class PropertiesToRender extends Component {
     }
 
     render() {
-        const propertyInfoList = this.state.propertyList.map((propertyInfo) => (
-            <PropertyList key={propertyInfo.id} property={propertyInfo}/>));
+        const propertyInfoList = this.state.propertyList.map((property) => {
+            return (
+                <>
+                    <tr key={property.id}>
+                        <td>{property.propertyName}</td>
+                        <td>{property.type}</td>
+                        <td>{property.address}</td>
+                        <td>{property.unitsCount}</td>
+                        <td>
+                            <ButtonGroup>
+                                <Button size="sm" color="primary" tag={Link}
+                                        to={"/edit-property/" + property.id}>Edit</Button>
+                                <Button size="sm" color="danger" style={{marginLeft: "10px"}}
+                                        onClick={() => this.deleteProperty(property.id)}>Delete</Button>
+                            </ButtonGroup>
+                        </td>
+                    </tr>
+                </>
+            )
+        });
         return (
             <>
 
